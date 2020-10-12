@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint **/*.ts",
+    "lint:fix": "eslint **/*.ts --fix"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,12 @@
   "homepage": "https://github.com/design-thinking-6/citrus#readme",
   "dependencies": {},
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.4.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-config-airbnb-typescript": "^11.0.0",
+    "eslint-plugin-import": "^2.22.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   }
