@@ -4,7 +4,8 @@
   "description": "The server running MphaGo",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node index.ts",
+    "dev": "cross-env NODE_ENV=dev ts-node index.ts",
+    "stg": "cross-env NODE_ENV=stg ts-node index.ts",
     "lint": "eslint **/*.ts",
     "lint:fix": "eslint **/*.ts --fix"
   },
@@ -18,10 +19,15 @@
     "url": "https://github.com/design-thinking-6/citrus/issues"
   },
   "homepage": "https://github.com/design-thinking-6/citrus#readme",
-  "dependencies": {},
+  "dependencies": {
+    "conev-sync": "^1.0.5",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.4.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-airbnb-typescript": "^11.0.0",
