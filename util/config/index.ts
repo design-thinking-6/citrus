@@ -16,5 +16,5 @@ configBuilder.addSource(jsonSource);
 
 export const configObject = configBuilder.build();
 configObject.sync();
-
-export default configObject.get() as Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default configObject.get() as any;
