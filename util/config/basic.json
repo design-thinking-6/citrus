@@ -1,0 +1,25 @@
+{
+  "logger": {
+    "transports": [
+      {
+        "type": "console",
+        "level": "debug"
+      },
+      {
+        "type": "file",
+        "filename": "logs/api",
+        "level": "debug"
+      },
+      {
+        "type": "file",
+        "filename": "logs/error",
+        "level": "error"
+      },
+      {
+        "type": "file",
+        "filename": "logs/warn",
+        "level": "warn"
+      }
+    ]
+  }
+}
