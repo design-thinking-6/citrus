@@ -102,14 +102,14 @@ interface Transport {
 
 # Todo
 * features
-[ ] setup koa module (WIP)
-[ ] setup typeorm
+ - [ ] setup koa module (WIP)
+ - [ ] setup typeorm
 
 * misc.
-[ ] decide which db used
+ - [ ] decide which db used
 
 # Contributor
-|Su-Yong|
+|심수용|
 |---|
 |2020105627|
 |컴퓨터공학과|
