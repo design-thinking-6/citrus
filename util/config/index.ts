@@ -1,20 +1,32 @@
 import { ConfigBuilder, JsonSource } from 'conev-sync';
 
+import { register, getConfig } from './get-configs';
+
 import basic from './basic.json';
 import dev from './dev.json';
 import stg from './stg.json';
+import { deepMerge } from '../deepmerge';
 
 const configBuilder = new ConfigBuilder();
 const jsonSource = new JsonSource();
 
-jsonSource.set('basic', basic);
-jsonSource.set('dev', dev);
-jsonSource.set('stg', stg);
+register('dev', dev);
+register('stg', stg);
+register('citrus', './citrus.json');
+
+const citrus = getConfig('citrus');
+for (const [key, value] of getConfig()) {
+  if (key !== 'citrus') {
+    const v = deepMerge(basic, value, citrus);
+
+    jsonSource.set(key, v);
+  }
+}
 
 configBuilder.addEnv('stg', 'dev', 'basic');
 configBuilder.addSource(jsonSource);
 
-export const configObject = configBuilder.build();
-configObject.sync();
+const config = configBuilder.build();
+config.sync();
 
-export default configObject.get() as Record<string, unknown>;
+export default config.get() as any;

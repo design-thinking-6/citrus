@@ -1,5 +1,5 @@
-import createLogger, { LoggerConfig } from './logger';
+import createLogger from './logger';
 
 import config from '../config';
 
-export default createLogger(config.logger as LoggerConfig);
+export default createLogger(config.logger);
