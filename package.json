@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/design-thinking-6/citrus#readme",
   "dependencies": {
+    "@types/node": "^14.11.8",
     "conev-sync": "^1.0.5",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
