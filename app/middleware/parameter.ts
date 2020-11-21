@@ -74,7 +74,7 @@ export class Parameter {
     };
   }
 
-  static CUSTOM(value: any): MiddlewareParameter<any> {
+  static CUSTOM<T>(value: T): MiddlewareParameter<T> {
     return {
       type: ParameterType.CUSTOM,
       value,

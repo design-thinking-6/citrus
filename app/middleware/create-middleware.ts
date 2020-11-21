@@ -7,7 +7,7 @@ export type Middleware<T> = (ctx: T, ...args: unknown[]) => Promise<unknown>;
 export function createMiddleware<T>(
   func: Middleware<T>,
   parameters: MiddlewareParameter<any>[],
-  response: MiddlewareResponse<any>,
+  response: MiddlewareResponse<any> | null,
 ): IMiddleware {
   if (func.length - 1 !== parameters.length) throw new Error('Parameter length is not equal to Functions parameter length');
 
@@ -25,22 +25,24 @@ export function createMiddleware<T>(
     try {
       const result = await func(ctx.state, ...params);
 
-      if (Response.isCookie(response)) {
-        const name: string = response.value?.name ?? '';
-        const value: string = result as string;
+      if (response) {
+        if (Response.isCookie(response)) {
+          const name: string = response.value?.name ?? '';
+          const value: string = result as string;
 
-        if (name) ctx.cookies.set(name, value);
-        else ctx.throw(500, 'Cookie name is empty');
-      }
-      if (Response.isContext(response)) {
-        const name = response.value?.name;
+          if (name) ctx.cookies.set(name, value);
+          else ctx.throw(500, 'Cookie name is empty');
+        }
+        if (Response.isContext(response)) {
+          const name = response.value?.name;
 
-        if (name) ctx.state[name] = result;
-        else ctx.state = result;
-      }
-      if (Response.isBody(response)) {
-        ctx.status = response.value?.status ?? 500;
-        ctx.body = result;
+          if (name) ctx.state[name] = result;
+          else ctx.state = result;
+        }
+        if (Response.isBody(response)) {
+          ctx.status = response.value?.status ?? 500;
+          ctx.body = result;
+        }
       }
     } catch (err) {
       ctx.throw(500, `failed to running: ${err}`);
