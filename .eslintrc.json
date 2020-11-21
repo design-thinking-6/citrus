@@ -20,6 +20,8 @@
         "linebreak-style": ["error", "windows"],
         "import/no-cycle": "off",
         "no-restricted-syntax": "off",
-        "@typescript-eslint/no-explicit-any": "off"
+        "max-len": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 }
