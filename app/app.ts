@@ -3,6 +3,8 @@ import bodyParser from 'koa-bodyparser';
 
 import router from './router';
 
+import 'reflect-metadata';
+
 const app = new Koa();
 
 app.use(bodyParser({
