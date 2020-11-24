@@ -10,6 +10,8 @@ A simple restful api server for MphaGo <br>
   * [logger](#logger)
     * [transports](#transports)
   * [server](#server)
+  * [database](#database)
+    * [postgres](#postgres)
 * [Todo](#todo)
 * [Contributor](#contributor)
 * [License](#license)
@@ -100,13 +102,42 @@ interface Transport {
 ## server
 `server` field is one 
 
+## database
+default value of database field
+```json
+"database": {
+  "postgres": {
+    "host": null,
+    "port": 5432,
+    "username": null,
+    "password": null,
+    "database": null
+  }
+}
+```
+### postgres
+`postgres` is a configuration of PostgreSQL DB, which is supported by citrus.
+
+all type of database is same type
+```typescript
+interface DatabaseConfigure {
+  host: string;
+  port: number;
+  username?: string;
+  password?: string;
+  database?: string;
+}
+```
+
 # Todo
 * features
- - [ ] setup koa module (WIP)
- - [ ] setup typeorm
+ - [X] Using koa
+ - [X] Using typeorm
+ - [ ] OAuth 2.0 (2021)
 
 * misc.
- - [ ] decide which db used
+ - [X] decide which db used - PostgreSQL
+ - [ ] decide question entity format
 
 # Contributor
 |심수용|
