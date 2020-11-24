@@ -9,8 +9,9 @@ export type LoggerConfig = {
 
 const format = winston.format.combine(
   winston.format.timestamp(),
+  winston.format.colorize({ message: true }),
   winston.format.printf(
-    ({ level, message, timestamp }) => `${timestamp} [${level}] ${message}`,
+    ({ level, message, timestamp }) => `${timestamp} [${level.toUpperCase()}] ${message}`,
   ),
 );
 

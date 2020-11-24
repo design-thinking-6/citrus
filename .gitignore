@@ -105,3 +105,6 @@ dist
 
 # Citrus config file
 citrus.json
+
+# .idea folder
+.idea/**/*
