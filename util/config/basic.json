@@ -21,5 +21,14 @@
         "level": "warn"
       }
     ]
+  },
+  "database": {
+    "postgres": {
+      "host": null,
+      "port": 5432,
+      "username": null,
+      "password": null,
+      "database": null
+    }
   }
 }
