@@ -105,3 +105,9 @@ dist
 
 # Citrus config file
 citrus.json
+
+# .idea folder
+.idea/**/*
+
+# Custom ignore
+package-lock.json

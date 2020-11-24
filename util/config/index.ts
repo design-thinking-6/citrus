@@ -7,26 +7,41 @@ import dev from './dev.json';
 import stg from './stg.json';
 import { deepMerge } from '../deepmerge';
 
-const configBuilder = new ConfigBuilder();
-const jsonSource = new JsonSource();
+function get() {
+  const configBuilder = new ConfigBuilder();
+  const jsonSource = new JsonSource();
 
-register('dev', dev);
-register('stg', stg);
-register('citrus', './citrus.json');
+  register('dev', dev);
+  register('stg', stg);
+  register('citrus', './citrus.json');
 
-const citrus = getConfig('citrus');
-for (const [key, value] of getConfig()) {
-  if (key !== 'citrus') {
-    const v = deepMerge(basic, value, citrus);
+  const citrus = getConfig('citrus');
+  for (const [key, value] of getConfig()) {
+    if (key !== 'citrus') {
+      const v = deepMerge(basic, value, citrus);
 
-    jsonSource.set(key, v);
+      jsonSource.set(key, v);
+    }
   }
+
+  configBuilder.addEnv('stg', 'dev', 'basic');
+  configBuilder.addSource(jsonSource);
+
+  const config = configBuilder.build();
+  config.sync();
+
+  return config.get() as any;
 }
 
-configBuilder.addEnv('stg', 'dev', 'basic');
-configBuilder.addSource(jsonSource);
+const config = get();
 
-const config = configBuilder.build();
-config.sync();
+function postProcess() {
+  let { transports } = config.logger;
+  transports = transports.slice(0, transports.length / 2);
 
-export default config.get() as any;
+  config.logger.transports = transports;
+}
+
+postProcess();
+
+export default config;
