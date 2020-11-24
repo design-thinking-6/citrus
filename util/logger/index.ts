@@ -2,4 +2,6 @@ import createLogger from './logger';
 
 import config from '../config';
 
-export default createLogger(config.logger);
+export const logger = createLogger(config.logger);
+
+export default logger;
