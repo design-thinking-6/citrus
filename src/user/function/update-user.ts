@@ -1,19 +1,12 @@
 import { getCustomRepository } from 'typeorm';
 import { UserRepository } from '../model/user-repository';
-import { Forbidden } from '../../../app/error/forbidden';
 import { ModifiableUserInfo } from '../schema/modifiable-user-info';
-import { Unauthorized } from '../../../app/error/unauthorized';
+import { checkValidUser } from './check-valid-user';
 
 export async function updateUser({ id, password }, userInfo: ModifiableUserInfo) {
   const userRepository = getCustomRepository(UserRepository);
 
-  if (await userRepository.count({ username: id }) === 0) {
-    throw new Forbidden(`User id "${userInfo.id}" is not exist`);
-  }
-
-  if (await userRepository.count({ username: id, password }) === 0) {
-    throw new Unauthorized('User id and password not matched');
-  }
+  await checkValidUser(id, password);
 
   const user = await userRepository.findByUsername(id);
 

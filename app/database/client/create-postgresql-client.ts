@@ -4,8 +4,14 @@ import { ClientConnection } from './client-connection';
 
 import { User } from '../../../src/user/model/user';
 import { Profile } from '../../../src/user/model/profile';
+import { Question } from '../../../src/question/model/question';
+import { Hint } from '../../../src/question/model/hint';
+import { Flow } from '../../../src/question/model/flow';
 
-const entities = [User, Profile];
+const entities = [
+  User, Profile,
+  Question, Hint, Flow,
+];
 
 export async function createPostgreSQLClient(config: any): Promise<ClientConnection> {
   const option: ConnectionOptions = {

@@ -22,6 +22,9 @@ export class User {
   })
   @JoinColumn()
   profile: Profile;
+
+  @Column({ default: false, name: 'is_admin' })
+  isAdmin: boolean;
 }
 
 export default User;

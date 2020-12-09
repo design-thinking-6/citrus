@@ -10,7 +10,7 @@ export function createMiddleware<T = any>(
   parameters: MiddlewareParameter<any>[],
   response: MiddlewareResponse<any> | null,
 ): IMiddleware {
-  if (func.length - 1 !== parameters.length) throw new Error('Parameter length is not equal to Functions parameter length');
+  if (Math.max(func.length - 1, 0) !== parameters.length) throw new Error('Parameter length is not equal to Functions parameter length');
 
   return async (ctx, next) => {
     const params = parameters.map((parameter) => {

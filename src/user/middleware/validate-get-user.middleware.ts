@@ -12,8 +12,7 @@ export const validateGetUser = createMiddleware(
 );
 export const validateGetAllUser = createMiddleware(
   async () => {},
-  [
-  ],
+  [],
   null,
 );
 
