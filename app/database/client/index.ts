@@ -8,6 +8,8 @@ export async function createClient() {
 
   const [postgres] = await createConnections([postgresConfig.option]);
 
+  await postgresConfig.postConnection(postgres);
+
   return {
     postgres,
   };

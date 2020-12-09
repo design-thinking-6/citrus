@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import readline from 'readline';
 import { run, close } from './app';
 import { logger } from './util/logger';

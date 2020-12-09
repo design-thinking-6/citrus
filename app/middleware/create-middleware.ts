@@ -1,10 +1,11 @@
 import { IMiddleware } from 'koa-router';
 import { Parameter, MiddlewareParameter } from './parameter';
 import { MiddlewareResponse, Response } from './response';
+import { logger } from '../../util/logger';
 
-export type Middleware<T> = (ctx: T, ...args: unknown[]) => Promise<unknown>;
+export type Middleware<T> = (ctx: T, ...args: any[]) => Promise<unknown>;
 
-export function createMiddleware<T>(
+export function createMiddleware<T = any>(
   func: Middleware<T>,
   parameters: MiddlewareParameter<any>[],
   response: MiddlewareResponse<any> | null,
@@ -17,7 +18,7 @@ export function createMiddleware<T>(
       if (Parameter.isParams(parameter)) return ctx.params[parameter.value?.name ?? ''];
       if (Parameter.isQuery(parameter)) return ctx.query[parameter.value?.name ?? ''];
       if (Parameter.isHeader(parameter)) return ctx.headers[parameter.value?.name ?? ''];
-      if (Parameter.isBody(parameter)) return ctx.body;
+      if (Parameter.isBody(parameter)) return ctx.request.body;
 
       return null;
     });
@@ -41,10 +42,12 @@ export function createMiddleware<T>(
         }
         if (Response.isBody(response)) {
           ctx.status = response.value?.status ?? 500;
-          ctx.body = result;
+          ctx.response.body = result;
         }
       }
     } catch (err) {
+      logger.error(`Error: ${err} at: ${func}`);
+      if (err.status) ctx.throw(err.status, err);
       ctx.throw(500, `failed to running: ${err}`);
     }
 

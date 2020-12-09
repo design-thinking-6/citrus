@@ -2,6 +2,11 @@ import { Connection, ConnectionOptions } from 'typeorm';
 
 import { ClientConnection } from './client-connection';
 
+import { User } from '../../../src/user/model/user';
+import { Profile } from '../../../src/user/model/profile';
+
+const entities = [User, Profile];
+
 export async function createPostgreSQLClient(config: any): Promise<ClientConnection> {
   const option: ConnectionOptions = {
     type: 'postgres',
@@ -10,6 +15,7 @@ export async function createPostgreSQLClient(config: any): Promise<ClientConnect
     username: config?.username ?? 'postgres',
     password: config?.password ?? 'password',
     database: config?.database ?? 'postgres',
+    entities,
   };
 
   const postConnection = async (connection: Connection) => {

@@ -24,7 +24,7 @@ export async function run(): Promise<void> {
     process.exit(CitrusErrors.DATABASE_CONNECTION_FAILED);
   }
 
-  logger.info('Citrus started');
+  logger.info(`Citrus started at ${config.server.port}`);
   app.listen(config.server.port);
 }
 

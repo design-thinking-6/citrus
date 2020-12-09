@@ -1,13 +1,11 @@
 import Router from 'koa-router';
 
-import { get } from './router-register';
+import userRouter from '../../src/user/router';
 
 const router = new Router();
 
 router.prefix('/v1/');
 
-get().forEach((r) => {
-  router.use(r.routes(), r.allowedMethods());
-});
+router.use(userRouter.routes(), userRouter.allowedMethods());
 
 export default router;
