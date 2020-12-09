@@ -1,7 +1,9 @@
 import {
-  Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn,
+  Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Profile } from './profile';
+import MistakeQuestionData from './mistake-question-data';
+import CorrectQuestionData from './correct-question-data';
 
 @Entity('users')
 export class User {
@@ -22,6 +24,18 @@ export class User {
   })
   @JoinColumn()
   profile: Profile;
+
+  @OneToMany(() => MistakeQuestionData, (data) => data.user, {
+    cascade: true,
+  })
+  @JoinColumn()
+  mistakeQuestionDataset: MistakeQuestionData[];
+
+  @OneToMany(() => CorrectQuestionData, (data) => data.user, {
+    cascade: true,
+  })
+  @JoinColumn()
+  correctQuestionDataset: CorrectQuestionData[];
 
   @Column({ default: false, name: 'is_admin' })
   isAdmin: boolean;

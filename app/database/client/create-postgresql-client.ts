@@ -7,9 +7,12 @@ import { Profile } from '../../../src/user/model/profile';
 import { Question } from '../../../src/question/model/question';
 import { Hint } from '../../../src/question/model/hint';
 import { Flow } from '../../../src/question/model/flow';
+import { MistakeQuestionData } from '../../../src/user/model/mistake-question-data';
+import { CorrectQuestionData } from '../../../src/user/model/correct-question-data';
 
 const entities = [
   User, Profile,
+  MistakeQuestionData, CorrectQuestionData,
   Question, Hint, Flow,
 ];
 
