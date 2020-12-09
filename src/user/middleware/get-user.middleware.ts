@@ -20,4 +20,5 @@ export const getAllUserMiddleware = createMiddleware(
 
 export default {
   getUserMiddleware,
+  getAllUserMiddleware,
 };
