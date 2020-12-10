@@ -15,6 +15,7 @@ export async function updateUser({ id, password }, userInfo: ModifiableUserInfo)
 
   if (userInfo.grade) user.profile.grade = userInfo.grade;
   if (userInfo.short_message) user.profile.shortMessage = userInfo.short_message;
+  if (userInfo.url) user.profile.url = userInfo.url;
 
   await userRepository.save(user);
 

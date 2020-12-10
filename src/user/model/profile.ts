@@ -16,6 +16,9 @@ export class Profile {
 
   @Column({ name: 'short_message', nullable: true })
   shortMessage?: string;
+
+  @Column({ nullable: true })
+  url?: string;
 }
 
 export default Profile;

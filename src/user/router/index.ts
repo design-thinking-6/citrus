@@ -20,6 +20,7 @@ import { updateUserMiddleware } from '../middleware/update-user.middleware';
 import { createMiddleware } from '../../../app/middleware/create-middleware';
 import { Response } from '../../../app/middleware/response';
 import { updateQuestionDataMiddleware } from '../middleware/update-question-data.middleware';
+import notFoundUserMiddleware from '../middleware/not-found-user.middleware';
 
 const returnResponse = (status: number) => createMiddleware((ctx) => ctx.user, [], Response.BODY(status));
 
@@ -28,8 +29,8 @@ const router = new Router();
 router.post('/users', validateCreateUser, createUserMiddleware, returnResponse(201));
 router.get('/users', validateGetAllUser, getAllUserMiddleware, removeManyUserPrivateMiddleware());
 
-router.get('/users/:user_id', validateGetUser, getUserMiddleware, removeUserPrivateMiddleware());
-router.get('/users/:user_id/:password', validateGetUser, getAuthorizedUserMiddleware, returnResponse(200));
+router.get('/users/:user_id', validateGetUser, getUserMiddleware, notFoundUserMiddleware, removeUserPrivateMiddleware());
+router.get('/users/:user_id/:password', validateGetUser, getAuthorizedUserMiddleware, notFoundUserMiddleware, returnResponse(200));
 router.patch('/users/:user_id/:password', validateUpdateUser, updateUserMiddleware, returnResponse(200));
 
 router.put(

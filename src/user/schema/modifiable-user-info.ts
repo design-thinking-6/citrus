@@ -4,4 +4,5 @@ export interface ModifiableUserInfo {
   password?: string;
   grade?: number;
   short_message?: string;
+  url?: string;
 }

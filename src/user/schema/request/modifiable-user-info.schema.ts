@@ -5,6 +5,7 @@ export const ModifiableUserInfoSchema = Joi.object({
   password: Joi.string().min(8).max(30).optional(),
   grade: Joi.number().optional(),
   short_message: Joi.string().optional(),
+  url: Joi.string().optional(),
 });
 
 export default {
