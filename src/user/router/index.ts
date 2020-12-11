@@ -20,7 +20,7 @@ import { updateUserMiddleware } from '../middleware/update-user.middleware';
 import { createMiddleware } from '../../../app/middleware/create-middleware';
 import { Response } from '../../../app/middleware/response';
 import { updateQuestionDataMiddleware } from '../middleware/update-question-data.middleware';
-import notFoundUserMiddleware from '../middleware/not-found-user.middleware';
+import { notFoundUserMiddleware } from '../middleware/not-found-user.middleware';
 
 const returnResponse = (status: number) => createMiddleware((ctx) => ctx.user, [], Response.BODY(status));
 

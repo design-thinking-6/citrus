@@ -9,11 +9,13 @@ import { Hint } from '../../../src/question/model/hint';
 import { Flow } from '../../../src/question/model/flow';
 import { MistakeQuestionData } from '../../../src/user/model/mistake-question-data';
 import { CorrectQuestionData } from '../../../src/user/model/correct-question-data';
+import { Notice } from '../../../src/notice/model/notice';
 
 const entities = [
   User, Profile,
   MistakeQuestionData, CorrectQuestionData,
   Question, Hint, Flow,
+  Notice,
 ];
 
 export async function createPostgreSQLClient(config: any): Promise<ClientConnection> {
